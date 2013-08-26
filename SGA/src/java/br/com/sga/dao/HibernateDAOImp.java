@@ -36,10 +36,6 @@ public abstract class HibernateDAOImp<T, ID extends Serializable>
     }
 
     public Session getSession() {
-        if (session == null) {
-            HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-            session = (Session) request.getAttribute("session");
-        }
         return session;
     }
 

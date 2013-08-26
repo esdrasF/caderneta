@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS `notas`.`TB_Serie` ;
 CREATE  TABLE IF NOT EXISTS `notas`.`TB_Serie` (
   `TbSerie_id` INT NOT NULL AUTO_INCREMENT ,
   `serie` INT NOT NULL ,
+  `modalidade` VARCHAR(20) NOT NULL ,
   `status` VARCHAR(1) NOT NULL ,
   PRIMARY KEY (`TbSerie_id`) )
 ENGINE = InnoDB;

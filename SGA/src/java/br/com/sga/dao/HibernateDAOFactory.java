@@ -5,8 +5,11 @@
 package br.com.sga.dao;
 
 import br.com.sga.dao.imp.AlunoDAOImp;
+import br.com.sga.dao.imp.EnderecoDAOImp;
 import br.com.sga.dao.imp.SerieDAOImp;
 import br.com.sga.util.HibernateUtil;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +32,11 @@ public class HibernateDAOFactory extends DAOFactory {
         return (SerieDAOImp) instantiateDAO(SerieDAOImp.class);
     }
 
+    @Override
+    public EnderecoDAOImp getEnderecoDAOImp() {
+        return (EnderecoDAOImp) instantiateDAO(EnderecoDAOImp.class);
+    }
+    
     private HibernateDAOImp instantiateDAO(Class daoClass) {
         try {
             logger.debug("Criando instancia de \""+daoClass.getName()+"\".");
@@ -43,7 +51,10 @@ public class HibernateDAOFactory extends DAOFactory {
     }
 
     protected Session getCurrentSession() {
-        return HibernateUtil.getSessionFactory().getCurrentSession();
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        return (Session) request.getAttribute("session");
     }
+
+    
 
 }
