@@ -12,6 +12,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,16 +34,20 @@ public class HibernateSessionFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest sr, ServletResponse sr1, FilterChain fc) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain fc) throws IOException, ServletException {
         log.debug("Entrou no método doFilter do filtro HibernateSessionFilter.");
         try {
             log.debug("Iniciando a transação.");
-            this.sf.getCurrentSession().beginTransaction();
+            Session session = this.sf.getCurrentSession();
+            session.beginTransaction();
+            request.setAttribute("session", session);
             log.debug("Passando a requisição para o próximo filtro.");
-            fc.doFilter(sr, sr1);
+            fc.doFilter(request, response);
+            
             log.debug("Voltando ao filtro HibernaterSessionFilter.");
             log.debug("Comitando e fechando a sessão.");
-            this.sf.getCurrentSession().getTransaction().commit();
+            session = (Session) request.getAttribute("session");
+            session.getTransaction().commit();
         } catch (Throwable ex) {
             log.error("Falha na execução do filtro", ex);
             try {

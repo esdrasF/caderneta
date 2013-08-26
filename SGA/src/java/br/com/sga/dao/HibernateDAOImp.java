@@ -4,12 +4,12 @@
  */
 package br.com.sga.dao;
 
-import br.com.sga.util.HibernateUtil;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 
 /**
@@ -19,7 +19,6 @@ import org.hibernate.criterion.DetachedCriteria;
 public abstract class HibernateDAOImp<T, ID extends Serializable>
         implements InterfaceDAO<T, ID> {
 
-    private static SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
     private Class<T> classe;
     private Session session;
 
@@ -38,7 +37,8 @@ public abstract class HibernateDAOImp<T, ID extends Serializable>
 
     public Session getSession() {
         if (session == null) {
-            session = sessionFactory.openSession();
+            HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+            session = (Session) request.getAttribute("session");
         }
         return session;
     }
@@ -49,40 +49,40 @@ public abstract class HibernateDAOImp<T, ID extends Serializable>
 
     @Override
     public void save(T entidade) {
-        session.save(entidade);
+        getSession().save(entidade);
     }
 
     @Override
     public void update(T entidade) {
-        session.update(entidade);
+        getSession().update(entidade);
     }
 
     @Override
     public void remove(T entidade) {
-        session.delete(entidade);
+        getSession().delete(entidade);
     }
 
     @Override
     public T getEntityByID(Serializable id) {
-        T entidade = (T) session.get(classe, id);
+        T entidade = (T) getSession().get(classe, id);
         return entidade;
     }
 
     @Override
     public List<T> getEntityes() {
-        List<T> listEntidades = session.createCriteria(classe).list();
+        List<T> listEntidades = getSession().createCriteria(classe).list();
         return listEntidades;
     }
 
     @Override
     public T getEntityeByCriteria(DetachedCriteria criteria) {
-        T entidade = (T) criteria.getExecutableCriteria(session).uniqueResult();
+        T entidade = (T) criteria.getExecutableCriteria(getSession()).uniqueResult();
         return entidade;
     }
 
     @Override
     public List<T> getEntitiesByCriteria(DetachedCriteria criteria) {
-        List<T> litEntidades = criteria.getExecutableCriteria(session).list();
+        List<T> litEntidades = criteria.getExecutableCriteria(getSession()).list();
         return litEntidades;
     }
 }

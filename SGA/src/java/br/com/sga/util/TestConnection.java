@@ -11,7 +11,7 @@ package br.com.sga.util;
 
 public class TestConnection {
     public static void main(String[] args) {
-        HibernateUtil.getSessionFactory().openSession();
+        
         
     }
 }

@@ -8,10 +8,6 @@ import java.io.Serializable;
 import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 
-/**
- *
- * @author DIGITACAOFUND
- */
 public interface InterfaceDAO<T, ID extends Serializable> {
 
     void save(T entidade);

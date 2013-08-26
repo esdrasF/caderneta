@@ -5,6 +5,7 @@
 package br.com.sga.dao;
 
 import br.com.sga.dao.imp.AlunoDAOImp;
+import br.com.sga.dao.imp.SerieDAOImp;
 import br.com.sga.util.HibernateUtil;
 import org.hibernate.Session;
 import org.slf4j.Logger;
@@ -21,6 +22,11 @@ public class HibernateDAOFactory extends DAOFactory {
     @Override
     public AlunoDAOImp getAlunoDAO() {
         return (AlunoDAOImp) instantiateDAO(AlunoDAOImp.class);
+    }
+    
+    @Override
+    public SerieDAOImp getSerieDAOImp() {
+        return (SerieDAOImp) instantiateDAO(SerieDAOImp.class);
     }
 
     private HibernateDAOImp instantiateDAO(Class daoClass) {
@@ -39,4 +45,5 @@ public class HibernateDAOFactory extends DAOFactory {
     protected Session getCurrentSession() {
         return HibernateUtil.getSessionFactory().getCurrentSession();
     }
+
 }

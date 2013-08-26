@@ -32,6 +32,8 @@ public class Serie implements Serializable {
     private Integer id;
     @Column(name = "serie")
     private Integer serie;
+    @Column(name = "modalidade")
+    private String modalidade;
     @Column(name = "status")
     private String status;
     // RELACIONAMENTOS
@@ -69,6 +71,14 @@ public class Serie implements Serializable {
 
     public void setListaAlunos(List<Aluno> listaAlunos) {
         this.listaAlunos = listaAlunos;
+    }
+
+    public String getModalidade() {
+        return modalidade;
+    }
+
+    public void setModalidade(String modalidade) {
+        this.modalidade = modalidade;
     }
 
     @Override
