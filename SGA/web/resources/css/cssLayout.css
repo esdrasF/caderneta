@@ -41,10 +41,8 @@
     font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
 }
 
-.menu_bar {
-    position: relative;
-    background-color: #dddddd;
-    padding: 5px;
+#menu {
+    font-size: 11px;
 }
 
 .left_content {
