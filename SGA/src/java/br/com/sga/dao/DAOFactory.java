@@ -2,19 +2,20 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.sga.model.dao;
+package br.com.sga.dao;
 
-import br.com.sga.model.dao.imp.AlunoDAOImp;
+import br.com.sga.dao.imp.AlunoDAOImp;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-/**
- *
- * @author DIGITACAOFUND
- */
 public abstract class DAOFactory {
+    
+    private static Logger logger = LoggerFactory.getLogger(DAOFactory.class);
 
-    public static final Class HIBERNATE = br.com.sga.model.dao.HibernateDAOFactory.class;
+    public static final Class HIBERNATE = br.com.sga.dao.HibernateDAOFactory.class;
 
     public static DAOFactory instance(Class daoClass) {
+        logger.debug("Fabrica da DAO (DAOFactory iniciada.)");
         try {
             return (DAOFactory) daoClass.newInstance();
         } catch (Exception e) {
