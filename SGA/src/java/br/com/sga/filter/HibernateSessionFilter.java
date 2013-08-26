@@ -56,6 +56,8 @@ public class HibernateSessionFilter implements Filter {
                 }
             } catch (Throwable t) {
                 t.printStackTrace();
+            } finally {
+                this.sf.getCurrentSession().close();
             }
             throw new ServletException();
         }
