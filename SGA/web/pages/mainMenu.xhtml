@@ -8,35 +8,21 @@ and open the template in the editor.
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
         <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
     </h:head>
     <h:body >
         <h:form>  
-
             <p:growl id="messages" autoUpdate="true"/>  
-
             <p:panelMenu style="width:200px; font-size: 11px;">  
-                <p:submenu label="Ajax Menuitems">  
-                    <p:menuitem value="Save" actionListener="#" icon="ui-icon-disk" />  
-                    <p:menuitem value="Update" actionListener="#"  icon="ui-icon-arrowrefresh-1-w" />  
+                <p:submenu label="Cadastros gerais" >  
+                    <p:menuitem value="Serie" action="seriepage" icon="ui-icon-pencil" />  
                 </p:submenu>  
                 <p:submenu label="Non-Ajax Menuitem">  
                     <p:menuitem value="Delete" actionListener="#"  ajax="false" icon="ui-icon-close"/>  
                 </p:submenu>  
                 <p:separator />  
-                <p:submenu label="Navigations" >  
-                    <p:submenu label="Links" icon="ui-icon-extlink">  
-                        <p:submenu label="PrimeFaces" icon="ui-icon-heart">  
-                            <p:menuitem value="Home" url="http://www.primefaces.org" icon="ui-icon-home" />  
-                            <p:menuitem value="Docs" url="http://www.primefaces.org/documentation.html" icon="ui-icon-document" />  
-                            <p:menuitem value="Download" url="http://www.primefaces.org/downloads.html" icon="ui-icon-arrowthick-1-s" />  
-                            <p:menuitem value="Support" url="http://www.primefaces.org/support.html" icon="ui-icon-wrench" />  
-                        </p:submenu>  
-                    </p:submenu>  
-                    <p:menuitem value="Mobile" icon="ui-icon-signal"/>  
-                </p:submenu>  
             </p:panelMenu>  
 
         </h:form>
