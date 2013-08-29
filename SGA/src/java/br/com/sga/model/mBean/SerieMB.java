@@ -18,13 +18,14 @@ import javax.faces.context.FacesContext;
  *
  * @author DIGITACAOFUND
  */
-@ManagedBean(name="serieBean")
+@ManagedBean(name = "serieBean")
 @RequestScoped
 public class SerieMB implements Serializable {
-    
+
     private Serie serie;
     private List<Serie> series;
     private SerieDAOImp serieDAO;
+    private boolean disable = true;
 
     public SerieMB() {
         setSerie(new Serie());
@@ -32,7 +33,7 @@ public class SerieMB implements Serializable {
     }
 
     public Serie getSerie() {
-        
+
         return serie;
     }
 
@@ -45,15 +46,24 @@ public class SerieMB implements Serializable {
     }
 
     public void setSeries(List<Serie> series) {
-        this.series = series; 
+        this.series = series;
+    }
+
+    public boolean getDisable() {
+        return disable;
+    }
+
+    public void setDisable(boolean disable) {
+        this.disable = disable;
     }
     
-    
+    public void habilitarCampos() {
+        setDisable(false);
+    }
     
     public void inserirSerie() {
         serieDAO.save(serie);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Série inserida com sucesso.", 
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Série inserida com sucesso.",
                 null));
     }
-    
 }

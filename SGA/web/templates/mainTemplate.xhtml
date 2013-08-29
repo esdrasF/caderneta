@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>::.:: SGA ::.::</title>
+    </h:head>
+    <h:body>
+        <p:layout fullPage="true">
+            <p:messages autoUpdate="true"/>
+            <p:layoutUnit position="north" size="80" resizable="false" closable="false" collapsible="false">
+                <h:outputText value="SGA" />
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="70" style="font-size: 11px; text-align: center;">
+                <br/>
+                <b><h:outputText value="SGA - Siatema de Gerênciamento Acadêmico" /><br/>
+                    <h:outputText value="2013 - Todos os direitos reservados." /></b>
+            </p:layoutUnit>
+
+            <!-- MENU -->
+            <p:layoutUnit position="west" header="Menu" size="208" resizable="true" collapsible="true" 
+                          style="font-size: 11px;">
+                <ui:include src="menu.xhtml"/>
+            </p:layoutUnit>
+
+            <!--            <p:layoutUnit position="east" size="200" header="Right" resizable="true" closable="true" collapsible="true" effect="drop">
+                            <h:outputText value="Right unit content." />
+                        </p:layoutUnit>-->
+
+            <!--CONTEÚDO-->
+            <p:layoutUnit position="center" style="font-size: 13px;">
+                <ui:insert name="conteudo">
+                </ui:insert>
+            </p:layoutUnit>
+
+        </p:layout>
+    </h:body>
+</html>

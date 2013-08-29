@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:body>
+        <h:form id="form_menu">
+
+            <p:growl id="messages" autoUpdate="true"/>
+
+            <p:panelMenu style="width:200px">
+                <p:submenu label="Cadastros gerais">
+                    <p:menuitem value="Série" outcome="/pages/seriepage.xhtml" icon="ui-icon-pencil" />
+                </p:submenu>
+            </p:panelMenu>
+
+        </h:form>
+    </h:body>
+</html>

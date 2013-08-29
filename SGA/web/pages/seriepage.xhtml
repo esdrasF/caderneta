@@ -1,14 +1,101 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="../templates/mainTemplate2.xhtml"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:h="http://java.sun.com/jsf/html"> 
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+    </h:head>
+    <h:body>
+        <ui:composition template="../templates/mainTemplate.xhtml">
+            <ui:define name="conteudo" >
+                <p:panel header="Serie" >
+                    <h:form id="form_serie">
+                        
+                        <p:panel id="panel_serie">
+                            <h:panelGrid columns="2" cellpadding="4" >
+                                <p:outputLabel value="Série/Ano:"/>
+                                <p:inputText id="serie" value="#{serieBean.serie.serie}" size="15" disabled="#{serieBean.disable}"/>
 
-    
-    <ui:define name="conteudo">
-        
-        
-    </ui:define>
+                                <p:outputLabel value="Modalidade:"/>
+                                <p:selectOneMenu value="#{serieBean.serie.modalidade}" disabled="#{serieBean.disable}">
+                                    <f:selectItem itemLabel="Selecione um" itemValue=""/>
+                                    <f:selectItem itemLabel="Fundamental" itemValue="FUNDAMENTAL"/>
+                                    <f:selectItem itemLabel="Médio" itemValue="MÉDIO"/>
+                                </p:selectOneMenu>
 
-</ui:composition>
+                                <p:outputLabel value="Status:"/>
+                                <p:selectOneMenu value="#{serieBean.serie.status}" disabled="#{serieBean.disable}">
+                                    <f:selectItem itemLabel="Selecione um" itemValue=""/>
+                                    <f:selectItem itemLabel="Ativo" itemValue="A"/>
+                                    <f:selectItem itemLabel="Inativo" itemValue="I"/>
+                                </p:selectOneMenu>
+                            </h:panelGrid>
+                            <h:panelGrid columns="3">
+                                <p:commandButton value="Novo" actionListener="#{serieBean.habilitarCampos}" update="form_serie:panel_serie"/> 
+                                <p:commandButton value="Salvar" actionListener="#{serieBean.inserirSerie}" disabled="#{serieBean.disable}"/> 
+                            </h:panelGrid>
+                                
+                        </p:panel>
+                        
+                        <br/>
+                        
+                        <div >
+                            <p:dataTable id="table_series" var="serie" value="#{serieBean.series}"
+                                         paginator="true" rows="10"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+                                         rowsPerPageTemplate="5,10,15" emptyMessage="Nenhum registro encontrado."
+                                         style="width: 800px;">
+                                <f:facet name="header" >
+                                    <h:outputText value="Lista de séries"/>
+                                </f:facet>
+
+                                <p:column >
+                                    <f:facet name="header">
+                                        <h:outputText value="Código"/>
+                                    </f:facet>
+                                    <h:outputText value="#{serie.id}"/>
+                                </p:column>
+                                <p:column >
+                                    <f:facet name="header">
+                                        <h:outputText value="Serie/Ano"/>
+                                    </f:facet>
+                                    <h:outputText value="#{serie.serie}"/>
+                                </p:column>
+                                <p:column >
+                                    <f:facet name="header">
+                                        <h:outputText value="Modalidade"/>
+                                    </f:facet>
+                                    <h:outputText value="#{serie.modalidade}"/>
+                                </p:column>
+                                <p:column >
+                                    <f:facet name="header">
+                                        <h:outputText value="Status"/>
+                                    </f:facet>
+                                    <h:outputText value="#{serie.status}"/>
+                                </p:column>
+                                <p:column >
+                                    <f:facet name="header">
+                                        <h:outputText value="Ações"/>
+                                    </f:facet>
+                                    <p:commandButton icon="ui-icon-pencil">
+                                        <f:setPropertyActionListener value="#{serie}" target="#{serieBean.serie}"/>
+                                    </p:commandButton>
+                                </p:column>
+                            </p:dataTable>
+                        </div>
+                    </h:form>
+                </p:panel>
+            </ui:define>
+        </ui:composition>
+
+    </h:body>
+</html>
