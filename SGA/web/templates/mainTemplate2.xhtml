@@ -9,33 +9,47 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
         <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
         <title>.:: SGA ::.</title>
+        
     </h:head>
     <h:body>
-        <p:layout fullPage="true" >  
-
-            <p:layoutUnit position="north" size="100" resizable="false" closable="false" collapsible="false" >  
-                <b><h:outputText value="SGA" style="font-size: 70px; padding-left: 15px; font-family: Lucida Console, Arial; color: windowtext;"/>  </b>
+        <p:layout fullPage="true">  
+            <p:layoutUnit position="north" size="100" resizable="false" closable="false" collapsible="false">  
+                <h:outputText value="North unit content." />  
             </p:layoutUnit>  
 
-            <p:layoutUnit position="south" size="100"  resizable="false" closable="false" collapsible="false">  
-                <h:outputText value="Rodapé" />  
+            <p:layoutUnit position="south" size="100" resizable="false" closable="false" collapsible="false">  
+                <h:outputText value="South unit content." />  
             </p:layoutUnit>  
 
             <!-- MENU -->
-            <p:layoutUnit position="west" size="208" header="Menu" resizable="true" closable="false" collapsible="true"> 
-                <ui:insert name="menu">
-                </ui:insert>
+            <p:layoutUnit position="west" size="208" header="Menu" resizable="true" closable="false" collapsible="true">  
+                <h:form id="formMenu">  
+                    <p:growl id="messages" autoUpdate="true"/>  
+                    <br/>
+                    <p:panelMenu style="width:198px; font-size: 11px;" >  
+
+                        <p:submenu label="Cadastros gerais" >  
+                            <p:menuitem value="Serie" action="/pages/seriepage.xhtml" icon="ui-icon-pencil"/>  
+                        </p:submenu>  
+
+                        <p:separator />  
+                    </p:panelMenu>  
+
+                </h:form>
             </p:layoutUnit>  
 
-            <!--CONTEÚDO-->
-            
-            <p:layoutUnit position="center">
-                <ui:insert id="conteudo" name="conteudo">
-                    Conteúdo novo projeto
+            <!--            <p:layoutUnit position="east" size="200" header="Right" resizable="true" closable="true" collapsible="true">  
+                            <h:outputText value="Right unit content." />  
+                        </p:layoutUnit>  -->
+
+            <p:layoutUnit position="center">  
+                <ui:insert name="conteudo">
+
                 </ui:insert>
             </p:layoutUnit>  
 
